@@ -1,0 +1,224 @@
+{
+  "skill": {
+    "name": "multichannel-sentiment-crisis-detection",
+    "id": 153,
+    "version": "1.0.0",
+    "cluster": "marketing-content-branding",
+    "description": "Analyzes multi-channel customer sentiment to detect emerging PR crises early and recommend evidence-based response strategies."
+  },
+  "knowledge_base": {
+    "file": "SECOND-KNOWLEDGE-BRAIN.md",
+    "auto_update": true,
+    "update_schedule": "weekly",
+    "update_day": "sunday",
+    "update_time": "02:00",
+    "timezone": "UTC"
+  },
+  "scoring": {
+    "dimensions": {
+      "sentiment_accuracy_coverage": {
+        "weight": 0.25,
+        "min_score": 0,
+        "max_score": 100
+      },
+      "early_crisis_signal_detection": {
+        "weight": 0.25,
+        "min_score": 0,
+        "max_score": 100
+      },
+      "channel_coverage_aggregation": {
+        "weight": 0.15,
+        "min_score": 0,
+        "max_score": 100
+      },
+      "severity_escalation_scoring": {
+        "weight": 0.20,
+        "min_score": 0,
+        "max_score": 100
+      },
+      "response_recommendation_quality": {
+        "weight": 0.15,
+        "min_score": 0,
+        "max_score": 100
+      }
+    },
+    "grade_boundaries": {
+      "A": 90,
+      "B": 75,
+      "C": 60,
+      "D": 0
+    }
+  },
+  "frameworks": {
+    "nlp_transformer": {
+      "enabled": true,
+      "model": "bert-base-uncased",
+      "fallback_model": "roberta-base"
+    },
+    "nlp_lexicon": {
+      "enabled": true,
+      "method": "vader"
+    },
+    "scct": {
+      "enabled": true,
+      "citation": "Coombs, W.T., 2007, Corporate Reputation Review"
+    },
+    "image_repair": {
+      "enabled": true,
+      "citation": "Benoit, W.L., 1995"
+    },
+    "anomaly_detection": {
+      "enabled": true,
+      "method": "isolation_forest",
+      "threshold_sigma": 2.0,
+      "sustained_hours": 4
+    }
+  },
+  "channels": {
+    "social": {
+      "twitter": {
+        "enabled": true,
+        "weight": 0.35,
+        "api_access": false
+      },
+      "facebook": {
+        "enabled": true,
+        "weight": 0.20,
+        "api_access": false
+      },
+      "instagram": {
+        "enabled": true,
+        "weight": 0.15,
+        "api_access": false
+      },
+      "linkedin": {
+        "enabled": true,
+        "weight": 0.10,
+        "api_access": false
+      },
+      "reddit": {
+        "enabled": true,
+        "weight": 0.15,
+        "api_access": false
+      },
+      "tiktok": {
+        "enabled": false,
+        "weight": 0.05,
+        "api_access": false
+      }
+    },
+    "review": {
+      "yelp": {
+        "enabled": true,
+        "weight": 0.25
+      },
+      "google_reviews": {
+        "enabled": true,
+        "weight": 0.35
+      },
+      "tripadvisor": {
+        "enabled": false,
+        "weight": 0.15
+      },
+      "app_store": {
+        "enabled": true,
+        "weight": 0.15
+      },
+      "google_play": {
+        "enabled": true,
+        "weight": 0.10
+      }
+    },
+    "news_media": {
+      "enabled": true,
+      "weight": 0.10
+    },
+    "direct_channels": {
+      "enabled": true,
+      "weight": 0.10
+    },
+    "forums": {
+      "enabled": true,
+      "weight": 0.10
+    }
+  },
+  "compliance": {
+    "gdpr": {
+      "enabled": true,
+      "jurisdictions": ["EU", "EEA", "UK"],
+      "consent_required": true,
+      "data_minimization": true,
+      "right_to_deletion": true
+    },
+    "ccpa": {
+      "enabled": true,
+      "jurisdictions": ["California"],
+      "data_deletion": true,
+      "opt_out_of_sale": true
+    },
+    "platform_terms": {
+      "twitter": {
+        "rate_limiting": true,
+        "no_redistribution": true,
+        "retention_days": 30
+      },
+      "reddit": {
+        "public_content_only": true,
+        "attribution_required": true
+      },
+      "facebook": {
+        "privacy_compliant_only": true,
+        "user_consent": true
+      }
+    }
+  },
+  "thresholds": {
+    "crisis_detection": {
+      "method": "sigma",
+      "threshold": 2.0,
+      "sustained_hours": 4,
+      "min_mentions": 100
+    },
+    "severity_scoring": {
+      "min_severity": 0,
+      "max_severity": 100,
+      "escalation_threshold": 70
+    },
+    "response_time": {
+      "golden_hour_minutes": 60,
+      "optimal_window_hours": 4,
+      "follow_up_cadence_hours": 6
+    }
+  },
+  "output": {
+    "format": "markdown",
+    "include_sections": [
+      "executive_summary",
+      "context_scope",
+      "dimension_scores",
+      "findings_risks",
+      "improvement_roadmap",
+      "limitations_certainty",
+      "sources"
+    ],
+    "quality_gates": {
+      "compliance_check": true,
+      "evidence_citation": true,
+      "challenge_stage": true,
+      "roadmap_traceability": true
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/skill.log",
+    "format": "%(asctime)s [%(levelname)s] %(message)s",
+    "rotation": "weekly",
+    "retention_days": 90
+  },
+  "development": {
+    "test_mode": false,
+    "dry_run": false,
+    "verbose": false,
+    "skip_compliance": false
+  }
+}
